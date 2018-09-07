@@ -1,0 +1,13 @@
+
+
+class BestBoardGames::Game
+
+
+
+
+
+
+
+
+
+end
