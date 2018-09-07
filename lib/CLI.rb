@@ -67,17 +67,27 @@ class BestBoardGames::CLI
 
     loop do
       puts ""
-      puts "Enter the number of the game that you'd like to know more about (ex: 1)"
+      puts "Enter the number of the game that you'd like to know more about (ex: 1), or enter 'menu' to return to the Main Menu"
       input = gets.strip
       test_array.each do |game|
-        binding.pry
-        if game.rank == input
-          puts "#{game.name}"
-          puts "Rank: #{game.rank}"
-          puts "boardgamegeek.com Rating: #{game.rating}"
+        #binding.pry
+        if game.rank.to_s == input
+          puts ""
+          puts "************************************"
+          puts ""
+          puts "#{game.name.upcase}"
+          puts ""
+          puts "Overall Rank: #{game.rank}"
+          puts ""
+          puts "Geek Rating: #{game.rating} / 10"
+          puts ""
           puts "Number of Players: #{game.num_players}"
+          puts ""
           puts "Play Time: #{game.play_time}"
+          puts ""
           puts "#{game.description}"
+          puts ""
+          puts "************************************"
         end
       end
     end
