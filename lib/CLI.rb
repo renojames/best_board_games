@@ -1,5 +1,6 @@
 require "./lib/best_board_games"
 require "./lib/Game"
+require "pry"
 
 class BestBoardGames::CLI
 
@@ -33,9 +34,7 @@ class BestBoardGames::CLI
       input = gets.strip.downcase
 
       if input == "fifty"
-        test_array.each do |game|
-          puts "#{game.rank}) #{game.name} #{game.price}"
-        end
+        self.top_fifty
       elsif input == "twenty"
         puts "Info for 20 board games"
       elsif input == "ten"
@@ -59,6 +58,31 @@ class BestBoardGames::CLI
     puts "Thank you for using Best Board Games, we hope to see you again! Game well!"
     puts ""
   end
+
+  def self.top_fifty
+    puts ""
+    test_array.each do |game|
+      puts "#{game.rank}) #{game.name} #{game.price}"
+    end
+
+    loop do
+      puts ""
+      puts "Enter the number of the game that you'd like to know more about (ex: 1)"
+      input = gets.strip
+      test_array.each do |game|
+        binding.pry
+        if game.rank == input
+          puts "#{game.name}"
+          puts "Rank: #{game.rank}"
+          puts "boardgamegeek.com Rating: #{game.rating}"
+          puts "Number of Players: #{game.num_players}"
+          puts "Play Time: #{game.play_time}"
+          puts "#{game.description}"
+        end
+      end
+    end
+
+  end # End self.top_fifty method
 
   # *** BEGINNING OF TEST DATA ***
 
