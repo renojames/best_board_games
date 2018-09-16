@@ -2,7 +2,7 @@ require "./lib/best_board_games"
 
 class BestBoardGames::Game
 
-  attr_accessor :name, :rank, :link, :rating, :price, :num_players, :play_time, :description
+  attr_accessor :name, :rank, :link, :rating, :price, :num_players, :play_time, :description, :genres
 
   @@all = []
 
