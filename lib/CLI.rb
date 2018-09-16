@@ -36,13 +36,13 @@ class BestBoardGames::CLI
       if input == "fifty"
         self.top_fifty
       elsif input == "twenty"
-        puts "Info for 20 board games"
+        self.top_twenty
       elsif input == "ten"
-        puts "Info for 10 board games"
+        self.top_ten
       elsif input == "five"
-        puts "Info for 5 board games"
+        self.top_five
       elsif input == "best"
-        puts "Info for the number 1 board game"
+        self.best
       elsif input == "exit"
         break
       else
@@ -104,6 +104,164 @@ class BestBoardGames::CLI
 
   end # End self.top_fifty method
 
+  def self.top_twenty
+    puts ""
+    test_array.each do |game|
+      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    end
+
+    loop do
+      puts ""
+      puts "Enter the number of the game that you'd like to know more about (ex: 1), or enter 'menu' to return to the Main Menu"
+      puts ""
+      input = gets.strip
+      if input.to_i.between?(1, 20)
+        test_array.each do |game|
+          #binding.pry
+          if game.rank.to_s == input
+            puts ""
+            puts "************************************"
+            puts ""
+            puts "#{game.name.upcase}"
+            puts ""
+            puts "Overall Rank: #{game.rank}"
+            puts ""
+            puts "Geek Rating: #{game.rating} / 10"
+            puts ""
+            puts "Number of Players: #{game.num_players}"
+            puts ""
+            puts "Play Time: #{game.play_time}"
+            puts ""
+            puts "Price: #{game.price}"
+            puts ""
+            puts "#{game.description}"
+            puts ""
+            puts "************************************"
+          end
+        end
+      elsif input == 'menu'
+        break
+      else
+        puts ""
+        puts "Sorry, I didn't understand that!"
+      end
+    end
+
+  end # End self.top_twenty method
+
+  def self.top_ten
+    puts ""
+    test_array.each do |game|
+      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    end
+
+    loop do
+      puts ""
+      puts "Enter the number of the game that you'd like to know more about (ex: 1), or enter 'menu' to return to the Main Menu"
+      puts ""
+      input = gets.strip
+      if input.to_i.between?(1, 10)
+        test_array.each do |game|
+          #binding.pry
+          if game.rank.to_s == input
+            puts ""
+            puts "************************************"
+            puts ""
+            puts "#{game.name.upcase}"
+            puts ""
+            puts "Overall Rank: #{game.rank}"
+            puts ""
+            puts "Geek Rating: #{game.rating} / 10"
+            puts ""
+            puts "Number of Players: #{game.num_players}"
+            puts ""
+            puts "Play Time: #{game.play_time}"
+            puts ""
+            puts "Price: #{game.price}"
+            puts ""
+            puts "#{game.description}"
+            puts ""
+            puts "************************************"
+          end
+        end
+      elsif input == 'menu'
+        break
+      else
+        puts ""
+        puts "Sorry, I didn't understand that!"
+      end
+    end
+
+  end # End self.top_ten method
+
+  def self.top_five
+    puts ""
+    test_array.each do |game|
+      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    end
+
+    loop do
+      puts ""
+      puts "Enter the number of the game that you'd like to know more about (ex: 1), or enter 'menu' to return to the Main Menu"
+      puts ""
+      input = gets.strip
+      if input.to_i.between?(1, 5)
+        test_array.each do |game|
+          #binding.pry
+          if game.rank.to_s == input
+            puts ""
+            puts "************************************"
+            puts ""
+            puts "#{game.name.upcase}"
+            puts ""
+            puts "Overall Rank: #{game.rank}"
+            puts ""
+            puts "Geek Rating: #{game.rating} / 10"
+            puts ""
+            puts "Number of Players: #{game.num_players}"
+            puts ""
+            puts "Play Time: #{game.play_time}"
+            puts ""
+            puts "Price: #{game.price}"
+            puts ""
+            puts "#{game.description}"
+            puts ""
+            puts "************************************"
+          end
+        end
+      elsif input == 'menu'
+        break
+      else
+        puts ""
+        puts "Sorry, I didn't understand that!"
+      end
+    end
+
+  end # End self.top_five method
+
+  def self.best
+    best = self.test_array[0]
+
+    puts ""
+    puts "************************************"
+    puts ""
+    puts "#{best.name.upcase}"
+    puts ""
+    puts "Overall Rank: #{best.rank}"
+    puts ""
+    puts "Geek Rating: #{best.rating} / 10"
+    puts ""
+    puts "Number of Players: #{best.num_players}"
+    puts ""
+    puts "Play Time: #{best.play_time}"
+    puts ""
+    puts "Price: #{best.price}"
+    puts ""
+    puts "#{best.description}"
+    puts ""
+    puts "************************************"
+  end
+
   # *** BEGINNING OF TEST DATA ***
 
   gloomhaven_hash = {name: "Gloomhaven", rank: 1, link: "https://boardgamegeek.com/boardgame/174430/gloomhaven", rating: "9.0", price: "$140.00", num_players: "1 - 4", play_time: "60 - 120 min", description: "Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world.", genres: "Adventure, Exporation, Fantasy, Fighting, Miniatures"}
@@ -121,7 +279,9 @@ class BestBoardGames::CLI
   @@test_array << pandemic_legacy
 
   def self.test_array
+    @@test_array = @@test_array.sort_by {|game| game.rank}
     @@test_array
+    #binding.pry
   end
 
 end
