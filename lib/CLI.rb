@@ -1,5 +1,6 @@
 require "./lib/best_board_games"
 require "./lib/Game"
+require "./lib/Scraper"
 require "pry"
 
 class BestBoardGames::CLI
