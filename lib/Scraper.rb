@@ -19,7 +19,14 @@ class BestBoardGames::Scraper
     doc.css("#row_").each do |game|
       game_hash = {}
       game_hash[:link] = "https://boardgamegeek.com#{game.css(".collection_objectname a").attribute("href").value}"
+
+      game_page = Nokogiri::HTML(open(game_hash[:link]))
+
+      game_hash[:description] = game_page.css(".game-description")
+
       game_hash[:name] = game.css(".collection_objectname a").text
+
+      binding.pry
 
       @@games_array << game_hash
 
