@@ -18,20 +18,14 @@ class BestBoardGames::Scraper
 
     doc.css("#row_").each do |game|
       game_hash = {}
-      game_hash[:link] = #Need to acquire CSS Selectors for Amazon
-
-      game_page = Nokogiri::HTML(open(game_hash[:link]))
-
-      game_hash[:name] = game.css(".collection_objectname a").text
 
       binding.pry
+
+      game_hash[:name] = game.css(".collection_objectname a").text
 
       @@games_array << game_hash
 
     end
-
-    binding.pry
-
   end
 
 
