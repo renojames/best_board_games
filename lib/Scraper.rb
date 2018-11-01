@@ -19,11 +19,12 @@ class BestBoardGames::Scraper
     doc.css("#row_").each do |game|
       game_hash = {}
 
-      binding.pry
-
       game_hash[:name] = game.css(".collection_objectname a").text
+      game_hash[:rank] = game.css("td.collection_rank a").attr("name").text
 
       @@games_array << game_hash
+
+      binding.pry
 
     end
   end
