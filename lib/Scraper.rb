@@ -21,6 +21,8 @@ class BestBoardGames::Scraper
 
       game_hash[:name] = game.css(".collection_objectname a").text
       game_hash[:rank] = game.css("td.collection_rank a").attr("name").text
+      game_hash[:year] = game.css("span.smallerfont.dull").text.delete!('()')
+      game_hash[:rating] = game.css("td.collection_bggrating")[1].text.strip
 
       @@games_array << game_hash
 
