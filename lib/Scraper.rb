@@ -23,6 +23,9 @@ class BestBoardGames::Scraper
       game_hash[:rank] = game.css("td.collection_rank a").attr("name").text
       game_hash[:year] = game.css("span.smallerfont.dull").text.delete!('()')
       game_hash[:rating] = game.css("td.collection_bggrating")[1].text.strip
+      game_hash[:num_voters] = game.css("td.collection_bggrating")[2].text.strip
+
+      #game.css("results_objectname1 a").map {|link| link['href']}[0]
 
       @@games_array << game_hash
 
