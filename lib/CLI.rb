@@ -6,6 +6,9 @@ require "pry"
 class BestBoardGames::CLI
 
   def self.start
+    BestBoardGames::Game.generate_games(BestBoardGames::Scraper.scrape)
+    @@all_games = BestBoardGames::Game.all
+    binding.pry
     self.greet
     self.menu
     self.goodbye

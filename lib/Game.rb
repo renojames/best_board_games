@@ -13,6 +13,12 @@ class BestBoardGames::Game
     @@all << self
   end
 
+  def self.generate_games(games_array)
+    games_array.each do |game_hash|
+      game = self.new(game_hash)
+    end
+  end
+
   def self.all
     @@all
   end
