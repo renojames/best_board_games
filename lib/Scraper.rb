@@ -12,15 +12,9 @@ class BestBoardGames::Scraper
 
     doc = Nokogiri::HTML(open("https://boardgamegeek.com/browse/boardgame"))
 
-    # doc.css("results_objectname1 a").text => "Gloomhaven"
-    # doc.css("#row_") => Grabs each game row
-    # doc.css("#row_ .collection_objectname a") => Grabs all game titles
-
     results_objectname_count = 1
 
     doc.css("#row_").each do |game|
-
-
 
       game_hash = {}
 
@@ -35,11 +29,12 @@ class BestBoardGames::Scraper
 
       @@games_array << game_hash
 
-      binding.pry
+      #binding.pry
 
       results_objectname_count += 1
 
     end
+    @@games_array
   end
 
 
