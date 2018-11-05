@@ -30,6 +30,6 @@ class BestBoardGames::Scraper
       results_objectname_count += 1
 
     end
-    binding.pry
+    @@games_array
   end
 end
