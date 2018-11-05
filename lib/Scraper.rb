@@ -25,18 +25,11 @@ class BestBoardGames::Scraper
       game_hash[:num_voters] = game.css("td.collection_bggrating")[2].text.strip
       game_hash[:link] = "https://boardgamegeek.com#{game.css("#results_objectname#{results_objectname_count} a").map {|link| link['href']}[0]}"
 
-      #Need to fix game_hash[:link], #results_objectname increases by +1 for each game... Maybe a counter interpolated? Seems messy.
-
       @@games_array << game_hash
-
-      #binding.pry
 
       results_objectname_count += 1
 
     end
-    @@games_array
+    binding.pry
   end
-
-
-
 end
