@@ -70,7 +70,9 @@ class BestBoardGames::CLI
   def self.top_fifty
     puts ""
     all_games.each do |game|
-      puts "#{game.rank}) #{game.name.upcase}"
+      if game.rank.to_i <= 50
+        puts "#{game.rank}) #{game.name.upcase}"
+      end
     end
 
     loop do
@@ -113,7 +115,9 @@ class BestBoardGames::CLI
   def self.top_twenty
     puts ""
     all_games.each do |game|
-      puts "#{game.rank}) #{game.name.upcase}"
+      if game.rank.to_i <= 20
+        puts "#{game.rank}) #{game.name.upcase}"
+      end
     end
 
     loop do
@@ -156,7 +160,9 @@ class BestBoardGames::CLI
   def self.top_ten
     puts ""
     all_games.each do |game|
-      puts "#{game.rank}) #{game.name.upcase}"
+      if game.rank.to_i <= 10
+        puts "#{game.rank}) #{game.name.upcase}"
+      end
     end
 
     loop do
@@ -199,7 +205,9 @@ class BestBoardGames::CLI
   def self.top_five
     puts ""
     all_games.each do |game|
-      puts "#{game.rank}) #{game.name.upcase}"
+      if game.rank.to_i <= 5
+        puts "#{game.rank}) #{game.name.upcase}"
+      end
     end
 
     loop do
