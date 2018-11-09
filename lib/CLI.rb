@@ -8,10 +8,14 @@ class BestBoardGames::CLI
   def self.start
     BestBoardGames::Game.generate_games(BestBoardGames::Scraper.scrape)
     @@all_games = BestBoardGames::Game.all
-    binding.pry
+    #binding.pry
     self.greet
     self.menu
     self.goodbye
+  end
+
+  def self.all_games
+    @@all_games
   end
 
   def self.greet
@@ -65,8 +69,8 @@ class BestBoardGames::CLI
 
   def self.top_fifty
     puts ""
-    test_array.each do |game|
-      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    all_games.each do |game|
+      puts "#{game.rank}) #{game.name.upcase}"
     end
 
     loop do
@@ -75,7 +79,7 @@ class BestBoardGames::CLI
       puts ""
       input = gets.strip
       if input.to_i.between?(1, 50)
-        test_array.each do |game|
+        all_games.each do |game|
           #binding.pry
           if game.rank.to_s == input
             puts ""
@@ -108,8 +112,8 @@ class BestBoardGames::CLI
 
   def self.top_twenty
     puts ""
-    test_array.each do |game|
-      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    all_games.each do |game|
+      puts "#{game.rank}) #{game.name.upcase}"
     end
 
     loop do
@@ -118,7 +122,7 @@ class BestBoardGames::CLI
       puts ""
       input = gets.strip
       if input.to_i.between?(1, 20)
-        test_array.each do |game|
+        all_games.each do |game|
           #binding.pry
           if game.rank.to_s == input
             puts ""
@@ -151,8 +155,8 @@ class BestBoardGames::CLI
 
   def self.top_ten
     puts ""
-    test_array.each do |game|
-      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    all_games.each do |game|
+      puts "#{game.rank}) #{game.name.upcase}"
     end
 
     loop do
@@ -161,7 +165,7 @@ class BestBoardGames::CLI
       puts ""
       input = gets.strip
       if input.to_i.between?(1, 10)
-        test_array.each do |game|
+        all_games.each do |game|
           #binding.pry
           if game.rank.to_s == input
             puts ""
@@ -194,8 +198,8 @@ class BestBoardGames::CLI
 
   def self.top_five
     puts ""
-    test_array.each do |game|
-      puts "#{game.rank}) #{game.name.upcase} - #{game.genres}"
+    all_games.each do |game|
+      puts "#{game.rank}) #{game.name.upcase}"
     end
 
     loop do
@@ -204,7 +208,7 @@ class BestBoardGames::CLI
       puts ""
       input = gets.strip
       if input.to_i.between?(1, 5)
-        test_array.each do |game|
+        all_games.each do |game|
           #binding.pry
           if game.rank.to_s == input
             puts ""
@@ -236,7 +240,7 @@ class BestBoardGames::CLI
   end # End self.top_five method
 
   def self.best
-    best = self.test_array[0]
+    best = self.all_games[0]
 
     puts ""
     puts "************************************"
@@ -274,7 +278,7 @@ class BestBoardGames::CLI
 
   #def self.test_array
   #  @@test_array = @@test_array.sort_by {|game| game.rank}
-  #  @@test_array
+  #  @@all_games
   #  #binding.pry
   #end
 
