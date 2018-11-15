@@ -16,9 +16,3 @@ DESIRED BEHAVIOR
 6) gets input in the form of a number OR "menu" from the user
 7) Puts out more detailed data about the one game OR returns to step 2
 8) Returns to step 5
-
-
-TO DO
-
- - Add genre as attribute for games
- - re-think what data displays on menu level and single-game level
