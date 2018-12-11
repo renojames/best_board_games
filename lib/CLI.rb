@@ -6,16 +6,15 @@ require "pry"
 class BestBoardGames::CLI
 
   def self.start
-    BestBoardGames::Game.generate_games(BestBoardGames::Scraper.scrape)
-    @@all_games = BestBoardGames::Game.all
+    BestBoardGames::Scraper.scrape
+    #BestBoardGames::Game.generate_games()
+    #BestBoardGames::Game.all
     self.greet
     self.menu
     self.goodbye
   end
 
-  def self.all_games
-    @@all_games
-  end
+
 
   def self.greet
     puts ""
@@ -34,6 +33,7 @@ class BestBoardGames::CLI
       puts "To view the top 20, enter 'twenty'"
       puts "To view the top 10, enter 'ten'"
       puts "To view the top 5, enter 'five'"
+      puts "To view the games with more than 5000 votes, enter 'votes'"
       puts "To view the number 1 board game, enter 'best'"
       puts "To leave the application, type 'exit'"
       puts ""
@@ -41,17 +41,20 @@ class BestBoardGames::CLI
       input = gets.strip.downcase
 
       if input == "fifty"
-        self.top_fifty
+        self.display_games_by_range(50)
       elsif input == "twenty"
-        self.top_twenty
+        self.display_games_by_range(20)
       elsif input == "ten"
-        self.top_ten
+        self.display_games_by_range(10)
       elsif input == "five"
-        self.top_five
+        self.display_games_by_range(5)
       elsif input == "best"
         self.best
       elsif input == "exit"
-        break
+          break
+      elsif input == "votes"
+        self.most_votes
+
       else
         puts "Sorry, I didn't understand that!"
       end
@@ -60,18 +63,17 @@ class BestBoardGames::CLI
 
   end
 
-  def self.goodbye
-    puts ""
-    puts "Thank you for using Best Board Games, we hope to see you again! Game well!"
-    puts ""
+  def self.most_votes
+    puts "hello"
   end
 
-  def self.top_fifty
+  def self.display_games_by_range(upper)
+
     puts ""
-    all_games.each do |game|
-      if game.rank.to_i <= 50
+    index = upper - 1
+    games = BestBoardGames::Game.all[0..index]
+    games.each do |game|
         puts "#{game.rank}) #{game.name.upcase}"
-      end
     end
 
     loop do
@@ -79,10 +81,10 @@ class BestBoardGames::CLI
       puts "Enter the number of the game that you'd like to know more about (ex: 1), or enter 'menu' to return to the Main Menu"
       puts ""
       input = gets.strip
-      if input.to_i.between?(1, 50)
-        all_games.each do |game|
-          #binding.pry
-          if game.rank.to_s == input
+
+      if input.to_i.between?(1, upper)
+        game = games[input.to_i - 1]
+
             puts ""
             puts "************************************"
             puts ""
@@ -99,8 +101,7 @@ class BestBoardGames::CLI
             puts "Link to Game: #{game.link}"
             puts ""
             puts "************************************"
-          end
-        end
+
       elsif input == 'menu'
         break
       else
@@ -108,6 +109,16 @@ class BestBoardGames::CLI
         puts "Sorry, I didn't understand that!"
       end
     end
+  end
+
+  def self.goodbye
+    puts ""
+    puts "Thank you for using Best Board Games, we hope to see you again! Game well!"
+    puts ""
+  end
+
+  def self.top_fifty
+
 
   end # End self.top_fifty method
 
@@ -265,3 +276,7 @@ class BestBoardGames::CLI
   end
 
 end
+
+
+#build a custom class method in the Game class that filters all the games with more than 5000 votes
+#build the most_votes method in the CLI class that will display those games to the user

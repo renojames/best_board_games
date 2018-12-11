@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "./lib/best_board_games"
+require_relative "../lib/best_board_games"
 
 BestBoardGames::CLI.start
